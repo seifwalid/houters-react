@@ -1,0 +1,29 @@
+
+.navbar {
+    z-index: 10000;
+}
+
+.search-box {
+    min-height: 25px;
+}
+
+.nav-item {
+    margin: 0 5px;
+}
+
+.search-box {
+    min-height: 25px;
+}
+
+.signup-btn {
+    background-color: #d1fae5;
+    font-family: Lexend, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 22px;
+    letter-spacing: 0;
+    text-align: left;
+
+    color: #047857 !important;
+}
+
