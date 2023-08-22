@@ -1,0 +1,20 @@
+.article-section .author-img {
+    width: 2rem;
+}
+
+.article-section .clock-img {
+    width: 1.5rem;
+}
+
+.article-section img {
+    width: 100%;
+    object-fit: contain;
+    padding: 0;
+}
+
+.article-stuff1 {
+    text-align: left;
+    font-weight: 500;
+    padding-right: 3rem;
+    font-size: 18px;
+}

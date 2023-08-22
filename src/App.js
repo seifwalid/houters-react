@@ -1,22 +1,22 @@
-import logo from "./logo.svg";
 import "./App.css";
-import Navbar from "./components/navbar/navbar.component";
-import Footer from "./components/footer/footer.component";
-import Section_1 from "./components/section-1/section-1.component";
+import Navbar from "./components/Navbar/Navbar.component";
+import Section1 from "./components/Section1/Section1.component";
+import Footer from "./components/Footer/Footer.component";
+import PropertySection from "./components/PropertySection/PropertySection";
+import ArticleSection from "./components/ArticleSection/ArticleSection";
+import ContactUsSection from "./components/ContactUsSection/ContactUsSection";
+
 const App = () => {
   return (
     <div className="App">
-      
       <Navbar />
-      <div className="container">
-      
-      <Section_1>
 
-      </Section_1>
-  
-      </div>
+      <Section1 />
+      <PropertySection />
+      <ArticleSection />
+      <ContactUsSection />
 
-      <Footer/>
+      <Footer />
     </div>
   );
 };

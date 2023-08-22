@@ -1,0 +1,130 @@
+.intro {
+    padding-top: 100px;
+}
+
+.section-1 .image-container {
+    background-image: url("/public/assets/images/image 6.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    background-size: cover;
+    border-bottom-left-radius: 0;
+
+    overflow: hidden;
+    position: relative;
+}
+
+
+.hollow-text {
+    -webkit-text-stroke: 1px #1b1c57;
+    -webkit-text-fill-color: transparent;
+}
+
+.location-icon {
+    left: 5%;
+    top: 25%;
+}
+
+.search-box {
+    min-height: 25px;
+}
+
+.intro h1 {
+    font-family: Lexend, sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 50px;
+    letter-spacing: 0;
+    text-align: left;
+    text-transform: capitalize;
+    width: 75%;
+}
+
+.item {
+    min-height: 100px;
+}
+
+.card1, .card2, .card3 {
+    height: 104px;
+}
+
+.card-image {
+    width: 112px;
+}
+
+.card1 .card-image {
+    width: 112px;
+}
+
+.card2 .card-image {
+    width: 56px;
+}
+
+.card3 .card-image {
+    width: 56px;
+}
+
+.mainContainer {
+    /*width: 100%;*/
+    overflow: hidden;
+}
+
+.navbar-nav a {
+    font-family: Lexend, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 18px;
+    letter-spacing: 0;
+    text-align: left;
+    color: #F0F3FD;
+}
+
+#contact-us .container {
+    background-image: url('/public/assets/images/Rectangle 24.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.d-flex.flex-column.align-items-center p {
+    color: #0e1735;
+    font-size: 18px;
+    line-height: 24px;
+    margin: 0;
+}
+
+.d-flex.flex-column.align-items-center p:last-child {
+    color: #888b97;
+    font-size: 14px;
+    line-height: 22px;
+}
+
+.fs-7 {
+    font-size: 12px;
+    line-height: normal;
+}
+
+.intro {
+    padding-top: 100px;
+}
+
+@media screen and (min-width: 400px) {
+
+}
+
+@media screen and (min-width: 768px) {
+    .filter-btn-list {
+        gap: 10px;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .intro {
+        padding-top: 20px;
+    }
+
+    .section-1 .image-container {
+        border-bottom-left-radius: 80px;
+    }
+}

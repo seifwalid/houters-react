@@ -1,0 +1,88 @@
+.bg-blur.right {
+    right: 0;
+    top: 70%;
+}
+
+.property-section {
+    width: 100%;
+    position: relative;
+}
+
+
+.property-section .arrow-btn {
+    background-color: #e0e2eb;
+}
+
+.property-section .arrow-btn img {
+    fill: #3c4563;
+}
+
+.property-section .arrow-btn:disabled {
+    background-color: #10b981;
+}
+
+.property-section .arrow-btn:disabled img {
+    fill: #ffffff;
+}
+
+
+.property-carousel-container {
+    overflow-x: auto;
+}
+
+.property-carousel-container::-webkit-scrollbar {
+    display: none;
+    scroll-behavior: auto;
+}
+
+.row-carousel p {
+    color: #f59e0b;
+}
+
+.row-carousel ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.row-carousel li {
+    display: flex;
+    padding: 12px 24px;
+    align-items: center;
+    margin-left: 0;
+    gap: 2px;
+    border-radius: 32px;
+    border: 1px solid #e0e3eb;
+    color: #888b97;
+}
+
+li img {
+    width: 20px;
+    height: 20px;
+}
+
+.row-nav {
+    gap: 4px;
+}
+
+.row-nav button {
+    display: inline-flex;
+    padding: 12px 16px;
+    align-items: center;
+    border-radius: 32px;
+    border: 1px solid #e0e3eb;
+    height: fit-content;
+}
+
+.filter-btn-list {
+    gap: 3px;
+}
+
+.row-nav button img {
+    width: 16px;
+    height: 16px;
+}
+
+.row-nav button:last-child {
+    background-color: #10b981;
+    color: white;
+}

@@ -1,0 +1,13 @@
+footer {
+    position: relative;
+}
+
+.bg-blur.bottom-right {
+    right: 0;
+    bottom: 0;
+}
+
+.bg-blur.bottom-left {
+    left: 0;
+    bottom: 0;
+}

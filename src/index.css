@@ -1,13 +1,49 @@
+@font-face {
+    src: url("./assets/fonts/Lexend-VariableFont_wght.ttf");
+    font-family: Lexend;
+}
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    margin: 0;
+    font-family: Lexend, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.subheading {
+    color: #f59e0b;
+}
+
+.fs-7 {
+    font-size: 12px;
+    line-height: normal;
+}
+
+.bg-blur {
+    position: absolute;
+    max-width: 100%;
+    z-index: -10;
+}
+
+.w-80 {
+    width: 80% !important;
+}
+
+.w-fit {
+    width: fit-content !important;
+}
+
+.d-flex.align-items-center {
+    gap: 8px;
+}
+
+input:focus {
+    outline: none;
 }
