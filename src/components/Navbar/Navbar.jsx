@@ -1,9 +1,10 @@
 import "./Navbar.styles.css";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
     <div>
-      <nav className="navbar navbar-expand-lg w-100 position-absolute bg-transparent">
+      <nav className="navbar navbar-expand-lg w-100 position-absolute">
         <div className="container">
           <div>
             <img src="/assets/images/Logo.png" className="w-100" alt="" />
@@ -70,9 +71,11 @@ const Navbar = () => {
                   </li>
                 </ul>
               </li>
-              <li className="nav-item rounded-pill py-2 px-3 signup-btn">
-                Sign Up!
-              </li>
+              <Link to={"/dashboard"}>
+                <li className="nav-item rounded-pill py-2 px-3 signup-btn">
+                  Sign Up!
+                </li>
+              </Link>
             </ul>
           </div>
         </div>

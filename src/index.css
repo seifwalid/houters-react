@@ -17,6 +17,11 @@ code {
     monospace;
 }
 
+.hollow-text {
+    -webkit-text-stroke: 1px #1b1c57;
+    -webkit-text-fill-color: transparent;
+}
+
 .subheading {
     color: #f59e0b;
 }

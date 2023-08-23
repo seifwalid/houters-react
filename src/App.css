@@ -1,8 +1,3 @@
-.hollow-text {
-    -webkit-text-stroke: 1px #1b1c57;
-    -webkit-text-fill-color: transparent;
-}
-
 .location-icon {
     left: 5%;
     top: 25%;
@@ -11,7 +6,6 @@
 .search-box {
     min-height: 25px;
 }
-
 
 .nav-item {
     margin: 0 5px;
@@ -160,7 +154,7 @@ li svg {
     }
 }
 
-.Subscribe-title {
+.subscribe-title {
     font-family: Lexend, sans-serif;
     font-size: 34px;
     font-weight: 600;
