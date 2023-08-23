@@ -70,16 +70,6 @@
     overflow: hidden;
 }
 
-.navbar-nav a {
-    font-family: Lexend, sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 18px;
-    letter-spacing: 0;
-    text-align: left;
-    color: #F0F3FD;
-}
-
 #contact-us .container {
     background-image: url('/public/assets/images/Rectangle 24.png');
     background-position: center;
