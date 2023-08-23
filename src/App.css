@@ -11,18 +11,6 @@
     margin: 0 5px;
 }
 
-.signup-btn {
-    background-color: #d1fae5;
-    font-family: Lexend, sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 22px;
-    letter-spacing: 0;
-    text-align: left;
-
-    color: #047857 !important;
-}
-
 .item {
     min-height: 100px;
 }
@@ -48,18 +36,7 @@
 }
 
 .mainContainer {
-    /*width: 100%;*/
     overflow: hidden;
-}
-
-.navbar-nav a {
-    font-family: Lexend, sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 18px;
-    letter-spacing: 0;
-    text-align: left;
-    color: #F0F3FD;
 }
 
 #contact-us .container {
@@ -138,19 +115,25 @@ li svg {
     width: 100%;
 }
 
-@media screen and (min-width: 400px) {
-
-}
-
+/* ---- MEDIUM ---- */
 @media screen and (min-width: 768px) {
     .filter-btn-list {
         gap: 10px;
     }
 }
 
+/* ---- LARGE ---- */
 @media screen and (min-width: 992px) {
     .vh-lg-100 {
         height: 100vh !important;
+    }
+
+    .w-lg-auto {
+        width: auto !important;
+    }
+
+    .w-lg-fit {
+        width: fit-content !important;
     }
 }
 
@@ -163,5 +146,4 @@ li svg {
     text-align: center;
     color: #1B1C57;
     text-transform: capitalize;
-
 }

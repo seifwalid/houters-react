@@ -21,26 +21,29 @@ const Navbar = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav ms-auto mb-2 mb-lg-0 d-flex justify-content-between align-items-center navbar-buttons-container">
-              <li>
-                <ul className="navbar-nav">
-                  <li className="nav-item rounded-pill border border-1 px-2">
+            <ul className="navbar-nav ms-auto mb-2 mb-lg-0 d-flex justify-content-between align-items-center">
+              <li className={"w-100 w-lg-fit"}>
+                <ul className="navbar-nav gap-1 gap-lg-2">
+                  <li className="nav-item">
                     <a
-                      className="nav-link"
+                      className="nav-link rounded-pill border border-1 px-3"
                       aria-current="page"
-                      href="#contact-us"
+                      href="#about-us"
                     >
                       About Us{" "}
                     </a>
                   </li>
-                  <li className="nav-item rounded-pill border border-1 px-2">
-                    <a className="nav-link" href="#articles">
-                      Article
+                  <li className="nav-item">
+                    <a
+                      className="nav-link rounded-pill border border-1 px-3"
+                      href="#articles"
+                    >
+                      Articles
                     </a>
                   </li>
-                  <li className="nav-item rounded-pill border border-1 px-2 dropdown">
+                  <li className="nav-item">
                     <a
-                      className="nav-link dropdown-toggle"
+                      className="nav-link rounded-pill border border-1 px-3 dropdown dropdown-toggle"
                       href="#"
                       role="button"
                       data-bs-toggle="dropdown"
@@ -51,7 +54,7 @@ const Navbar = () => {
                     <ul className="dropdown-menu">
                       <li>
                         <a className="dropdown-item" href="#properties">
-                          Action
+                          Goto Properties
                         </a>
                       </li>
                       <li>
@@ -71,11 +74,14 @@ const Navbar = () => {
                   </li>
                 </ul>
               </li>
-              <Link to={"/dashboard"}>
-                <li className="nav-item rounded-pill py-2 px-3 signup-btn">
-                  Sign Up!
-                </li>
-              </Link>
+              <li className={"nav-item w-auto"}>
+                <Link
+                  className="nav-link rounded-pill py-3 px-4 signup-btn"
+                  to={"/dashboard"}
+                >
+                  Dashboard
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

@@ -1,29 +1,46 @@
-
 .navbar {
     z-index: 10000;
+    background-color: white;
 }
 
-.search-box {
-    min-height: 25px;
+.navbar-nav {
+    width: 100%;
 }
 
 .nav-item {
-    margin: 0 5px;
+    margin: 0;
+    width: 100%;
+    text-align: center;
 }
 
-.search-box {
-    min-height: 25px;
-}
-
-.signup-btn {
-    background-color: #d1fae5;
+.navbar-nav a {
     font-family: Lexend, sans-serif;
     font-size: 14px;
     font-weight: 600;
-    line-height: 22px;
+    line-height: 18px;
     letter-spacing: 0;
-    text-align: left;
+    text-align: center;
+    color: #2c4e8e;
+}
+
+.signup-btn {
+    background-color: #d1fae5 !important;
+    line-height: 22px;
 
     color: #047857 !important;
 }
 
+@media screen and (min-width: 992px) {
+    .navbar, .navbar * {
+        background-color: transparent;
+    }
+
+    .navbar-nav a {
+        color: #eeeeee;
+        text-align: left;
+    }
+
+    .nav-item, .navbar-nav {
+        width: auto;
+    }
+}
