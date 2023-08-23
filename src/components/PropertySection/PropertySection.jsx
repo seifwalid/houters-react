@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PropertySectionTemplate from "./PropertySection.template";
 
 const mockPropertyList = Array(10);
@@ -26,7 +26,12 @@ function PropertySection() {
   const [filter, setFilter] = useState("");
   const [navDisabled, setNavDisabled] = useState({ left: true, right: false });
 
-  const updateDisabled = (e) => {
+  useEffect(() => {
+    const carousel = document.querySelector(".property-carousel-container");
+    updateDisabled({ target: carousel });
+  }, [filter]);
+
+  const updateDisabled = (e: { target: HTMLElement }) => {
     const carousel = e.target;
     setNavDisabled({
       left: carousel.scrollLeft === 0,
