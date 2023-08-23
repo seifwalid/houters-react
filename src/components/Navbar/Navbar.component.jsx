@@ -1,7 +1,6 @@
 import "./Navbar.styles.css";
 
 const Navbar = () => {
-  console.log(" hello i am Navbar  ");
   return (
     <div>
       <nav className="navbar navbar-expand-lg w-100 position-absolute bg-transparent">

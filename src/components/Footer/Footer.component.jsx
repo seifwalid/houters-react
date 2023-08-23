@@ -1,7 +1,6 @@
 import "./Footer.styles.css";
 
 const Footer = () => {
-  console.log("i am Footer ");
   return (
     <footer className="mt-5 py-5">
       <img

@@ -1,7 +1,6 @@
 import "./Section1.styles.css";
 
 const Section1 = () => {
-  console.log("i am section 1 ");
   return (
     <section className="section-1 container-fluid mb-5 mainContainer ">
       <div className="row">

@@ -8,23 +8,33 @@
     position: relative;
 }
 
-
-.property-section .arrow-btn {
-    background-color: #e0e2eb;
-}
-
 .property-section .arrow-btn img {
-    fill: #3c4563;
-}
-
-.property-section .arrow-btn:disabled {
-    background-color: #10b981;
+    filter: brightness(255);
 }
 
 .property-section .arrow-btn:disabled img {
-    fill: #ffffff;
+    filter: brightness(50%);
 }
 
+.property-section .arrow-btn {
+    background-color: #10b981;
+}
+
+.property-section .arrow-btn:disabled {
+    background-color: #e0e2eb;
+}
+
+.filter-item {
+    cursor: pointer;
+}
+
+.filter-item img {
+    filter: saturate(0.1);
+}
+
+.filter-item.active img {
+    filter: saturate(1);
+}
 
 .property-carousel-container {
     overflow-x: auto;
