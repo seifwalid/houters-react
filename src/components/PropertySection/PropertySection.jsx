@@ -1,35 +1,28 @@
 import { useEffect, useState } from "react";
 import PropertySectionTemplate from "./PropertySection.template";
-
-const mockPropertyList = Array(10);
-
-const mockProperty = {
-  name: "House of the People",
-  propertyImage: "/assets/images/third_house.png",
-  type: "house",
-  ownerName: "Smarty Pants",
-  ownerImage: "/assets/images/avatar1.png",
-  location: "Piltover",
-  category: "popular",
-  price: 10000.99,
-};
-
-for (let i = 0; i < mockPropertyList.length; i++) {
-  mockPropertyList[i] = { ...mockProperty };
-}
-mockPropertyList[3].type = "villa";
-mockPropertyList[1].type = "apartment";
-mockPropertyList[2].type = "apartment";
+import { getProperties } from "../../api/properties";
 
 function PropertySection() {
-  const [propertyList, setPropertyList] = useState(mockPropertyList);
+  const [propertyList, setPropertyList] = useState([]);
   const [filter, setFilter] = useState("");
   const [navDisabled, setNavDisabled] = useState({ left: true, right: false });
+
+  const changeFilter = (propertyType) => {
+    if (filter === propertyType) {
+      setFilter("");
+    } else {
+      setFilter(propertyType);
+    }
+  };
 
   useEffect(() => {
     const carousel = document.querySelector(".property-carousel-container");
     updateDisabled({ target: carousel });
   }, [filter]);
+
+  useEffect(() => {
+    getProperties().then((response) => setPropertyList(response.data));
+  }, []);
 
   const updateDisabled = (e: { target: HTMLElement }) => {
     const carousel = e.target;
@@ -55,7 +48,7 @@ function PropertySection() {
     <PropertySectionTemplate
       propertyList={propertyList}
       filter={filter}
-      setFilter={setFilter}
+      changeFilter={changeFilter}
       scrollPropertyCarousel={scrollPropertyCarousel}
       navDisabled={navDisabled}
       updateDisabled={updateDisabled}

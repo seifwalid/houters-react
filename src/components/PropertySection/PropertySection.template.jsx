@@ -4,7 +4,7 @@ import "./PropertySection.style.css";
 function PropertySectionTemplate({
   propertyList,
   filter,
-  setFilter,
+  changeFilter,
   scrollPropertyCarousel,
   navDisabled,
   updateDisabled,
@@ -24,7 +24,7 @@ function PropertySectionTemplate({
                 className={`filter-item col-sm flex-grow-0 ${
                   filter === "house" && "active"
                 }`}
-                onClick={() => setFilter("house")}
+                onClick={() => changeFilter("house")}
               >
                 <img src="/assets/svgs/house.svg" alt="" />
                 house
@@ -34,7 +34,7 @@ function PropertySectionTemplate({
                 className={`filter-item col-sm flex-grow-0 ${
                   filter === "villa" && "active"
                 }`}
-                onClick={() => setFilter("villa")}
+                onClick={() => changeFilter("villa")}
               >
                 <img src="/assets/svgs/villa.svg" alt="" />
                 Villa
@@ -44,7 +44,7 @@ function PropertySectionTemplate({
                 className={`filter-item col-sm flex-grow-0 ${
                   filter === "apartment" && "active"
                 }`}
-                onClick={() => setFilter("apartment")}
+                onClick={() => changeFilter("apartment")}
               >
                 <img src="/assets/svgs/appartment.svg" alt="" />
                 Apartment

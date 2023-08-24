@@ -1,6 +1,8 @@
 import { FC } from "react";
 import { Link } from "react-router-dom";
 import "./Dashboard.styles.css";
+import { Dialog } from "primereact/dialog";
+import PropertyForm from "../../components/PropertyForm/PropertyForm";
 
 export type Property = {
   id: number,
@@ -16,8 +18,13 @@ export type Property = {
 
 const DashboardTemplate: FC = ({
   propertyList,
-}: {
-  propertyList: Property[],
+  createDialogVisible,
+  toggleCreateDialog,
+  editDialogVisible,
+  editingProperty,
+  toggleEditDialog,
+  refreshPropertyList,
+  deleteProperty,
 }) => {
   return (
     <>
@@ -30,6 +37,24 @@ const DashboardTemplate: FC = ({
         </Link>
       </div>
       <div className="container">
+        <button
+          className="btn btn-primary mt-3 mb-3"
+          onClick={toggleCreateDialog}
+        >
+          Add Property +
+        </button>
+
+        <Dialog
+          header={"Add Property"}
+          visible={createDialogVisible}
+          onHide={toggleCreateDialog}
+        >
+          <PropertyForm
+            refreshPropertyList={refreshPropertyList}
+            closeDialog={toggleCreateDialog}
+          />
+        </Dialog>
+
         <table className={"table table-hover"}>
           <thead>
             <tr>
@@ -58,8 +83,27 @@ const DashboardTemplate: FC = ({
                     <td>{property.category}</td>
                     <td>{property.price}</td>
                     <td>
-                      <button className={"btn btn-secondary"}>
-                        <i className={""}></i>
+                      <button className={"btn btn-danger"}>
+                        <i
+                          className={""}
+                          onClick={() => {
+                            deleteProperty(property.id);
+                          }}
+                        >
+                          del
+                        </i>
+                      </button>
+                    </td>
+                    <td>
+                      <button className={"btn btn-light"}>
+                        <i
+                          className={""}
+                          onClick={() => {
+                            toggleEditDialog(property);
+                          }}
+                        >
+                          edit
+                        </i>
                       </button>
                     </td>
                   </tr>
@@ -67,6 +111,17 @@ const DashboardTemplate: FC = ({
               : null}
           </tbody>
         </table>
+        <Dialog
+          header={"Add Property"}
+          visible={editDialogVisible}
+          onHide={toggleEditDialog}
+        >
+          <PropertyForm
+            initialProperty={editingProperty}
+            refreshPropertyList={refreshPropertyList}
+            closeDialog={toggleEditDialog}
+          />
+        </Dialog>
       </div>
     </>
   );

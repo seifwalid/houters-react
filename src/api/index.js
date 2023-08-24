@@ -16,19 +16,19 @@ class api {
   }
 
   async get(endpoint: string) {
-    return await this.base.get(endpoint).then(this.printResponse);
+    return await this.base.get(endpoint).catch(this.defaultCatch);
   }
 
   async del(endpoint: string) {
-    return this.base.delete(endpoint);
+    return await this.base.delete(endpoint).catch(this.defaultCatch);
   }
 
   async put(endpoint: string, body: any) {
-    return this.base.put(endpoint, body);
+    return await this.base.put(endpoint, body).catch(this.defaultCatch);
   }
 
   async post(endpoint: string, body: any) {
-    return this.base.put(endpoint, body);
+    return await this.base.post(endpoint, body).catch(this.defaultCatch);
   }
 }
 

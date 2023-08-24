@@ -8,8 +8,8 @@ export const getProperty = async (id: number) => {
   return await api.get(`/properties/${id}`);
 };
 
-export const createProperty = async (id: number, body: any) => {
-  return await api.put(`/properties/${id}`, body);
+export const createProperty = async (body: any) => {
+  return await api.post(`/properties/`, body);
 };
 
 export const updateProperty = async (id: number, body: any) => {
