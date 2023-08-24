@@ -18,7 +18,7 @@ function PropertySection() {
   useEffect(() => {
     const carousel = document.querySelector(".property-carousel-container");
     updateDisabled({ target: carousel });
-  }, [filter]);
+  }, [filter, propertyList]);
 
   useEffect(() => {
     getProperties().then((response) => setPropertyList(response.data));

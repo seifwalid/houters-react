@@ -59,12 +59,23 @@ const PropertyForm: FC = ({
     };
   };
 
+  const propertyImageOnChange = (e) => {
+    if (e.target.files) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        dropdownOnChange("propertyImage")({ value: reader.result });
+      };
+      reader.readAsDataURL(e.target.files[0]);
+    }
+  };
+
   return (
     <PropertyFormTemplate
       onChange={onChange}
       property={property}
       onSubmit={onSubmit}
       dropdownOnchange={dropdownOnChange}
+      propertyImageOnChange={propertyImageOnChange}
     />
   );
 };
