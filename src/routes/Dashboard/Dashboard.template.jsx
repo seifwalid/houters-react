@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./Dashboard.styles.css";
 import { Dialog } from "primereact/dialog";
 import PropertyForm from "../../components/PropertyForm/PropertyForm";
+import { deletePropertyImage } from "../../utils/firebase/storage";
 
 export type Property = {
   id: number,
@@ -72,11 +73,11 @@ const DashboardTemplate: FC = ({
           <tbody>
             {propertyList
               ? propertyList.map((property) => (
-                  <tr>
+                  <tr key={property.id}>
                     <th scope={"row"}>{property.id}</th>
                     <td>{property.name}</td>
                     <td>{property.type}</td>
-                    <td>{property.propertyImage}</td>
+                    <td>{property.propertyImage.fullPath}</td>
                     <td>{property.ownerName}</td>
                     <td>{property.ownerImage}</td>
                     <td>{property.location}</td>
@@ -88,6 +89,13 @@ const DashboardTemplate: FC = ({
                           className={""}
                           onClick={() => {
                             deleteProperty(property.id);
+                            deletePropertyImage(
+                              property.propertyImage.fullPath
+                            ).then(() => {
+                              console.log(
+                                `deleted ${property.propertyImage.fullPath}`
+                              );
+                            });
                           }}
                         >
                           del

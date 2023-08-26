@@ -1,6 +1,10 @@
-import { FC, SyntheticEvent, useEffect, useState } from "react";
+import { FC, SyntheticEvent, useEffect, useRef, useState } from "react";
 import PropertyFormTemplate from "./PropertyForm.template";
 import { createProperty, updateProperty } from "../../api/properties";
+import { storage } from "../../firebase";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { randomInt } from "../../utils/random";
+import { deletePropertyImage } from "../../utils/firebase/storage";
 
 const PropertyForm: FC = ({
   initialProperty,
@@ -14,8 +18,9 @@ const PropertyForm: FC = ({
     price: 0,
     location: "",
     ownerName: "",
-    propertyImage: "",
+    propertyImage: null,
   });
+  const propertyImageRef = useRef(null);
 
   useEffect(() => {
     if (initialProperty !== undefined) {
@@ -31,15 +36,76 @@ const PropertyForm: FC = ({
     }
   };
 
+  const createPropertyImageRef = (file) => {
+    const [name, ...suffixArr] = file.name.split(".");
+    const suffix = "." + suffixArr.join(".");
+
+    return ref(
+      storage,
+      `propertyImages/${name}_${randomInt(0, 999999)}${suffix}`
+    );
+  };
+
+  const uploadPropertyImage = () => {
+    const file = propertyImageRef.current.files[0];
+    const imageRef = createPropertyImageRef(file);
+
+    return uploadBytes(imageRef, file).then((r) => {
+      return imageRef;
+    });
+  };
+
+  const uploadPropertyImageWithRequest = (requestBody, requestFn: Function) => {
+    uploadPropertyImage().then((imageRef) => {
+      getDownloadURL(imageRef).then((url) => {
+        requestBody.propertyImage = {
+          fullPath: imageRef.fullPath,
+          url,
+        };
+        requestFn();
+      });
+    });
+  };
+
+  const createPropertyWithImage = (requestBody) => {
+    uploadPropertyImageWithRequest(requestBody, () =>
+      createProperty(requestBody).then(defaultThen)
+    );
+  };
+
+  const updatePropertyWithImage = (id, requestBody) => {
+    console.log("initial prop: ", initialProperty);
+    if (initialProperty.propertyImage.length !== null) {
+      deletePropertyImage(initialProperty.propertyImage.fullPath)
+        .then(() => console.log("deleted property image"))
+        .catch(() => {
+          console.log("deleting failed");
+        });
+    }
+
+    return uploadPropertyImageWithRequest(requestBody, () =>
+      updateProperty(id, requestBody).then(defaultThen)
+    );
+  };
+
   const onSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
     console.log("initial property: ", initialProperty);
     if (initialProperty === undefined) {
-      console.log("creating new property", property);
-      createProperty(property).then(defaultThen);
+      const requestBody = { ...property };
+      if (propertyImageRef.current.files.length > 0) {
+        createPropertyWithImage(requestBody);
+      } else {
+        createProperty(requestBody).then(defaultThen);
+      }
     } else {
       const { id, ...requestBody } = property;
-      updateProperty(id, requestBody).then(defaultThen);
+
+      if (propertyImageRef.current.files.length > 0) {
+        updatePropertyWithImage(id, requestBody);
+      } else {
+        updateProperty(id, requestBody).then(defaultThen);
+      }
     }
   };
 
@@ -60,13 +126,7 @@ const PropertyForm: FC = ({
   };
 
   const propertyImageOnChange = (e) => {
-    if (e.target.files) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        dropdownOnChange("propertyImage")({ value: reader.result });
-      };
-      reader.readAsDataURL(e.target.files[0]);
-    }
+    console.log(propertyImageRef.current.files[0].name.split("."));
   };
 
   return (
@@ -76,6 +136,7 @@ const PropertyForm: FC = ({
       onSubmit={onSubmit}
       dropdownOnchange={dropdownOnChange}
       propertyImageOnChange={propertyImageOnChange}
+      propertyImageRef={propertyImageRef}
     />
   );
 };

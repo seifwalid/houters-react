@@ -9,6 +9,7 @@ const PropertyFormTemplate = ({
   onChange,
   dropdownOnchange,
   propertyImageOnChange,
+  propertyImageRef,
 }) => {
   const propertyTypes = ["house", "villa", "apartment", "other"];
   const propertyCategories = [
@@ -58,10 +59,11 @@ const PropertyFormTemplate = ({
       <div className={"mb-1 d-flex justify-content-between "}>
         <label className={"me-3"}>propertyImage</label>
         <input
+          type={"file"}
           className={"form-control"}
-          type="file"
-          accept="image/png, image/jpeg"
+          accept={"image/png, image/jpeg, .webp"}
           onChange={propertyImageOnChange}
+          ref={propertyImageRef}
         />
       </div>
       <div className={"mb-1 d-flex justify-content-between "}>

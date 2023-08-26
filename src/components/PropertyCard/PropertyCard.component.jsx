@@ -34,13 +34,13 @@ function PropertyCard({
       <div
         className={"property-card-image"}
         style={{
-          backgroundImage: `url(${propertyImage})`,
+          backgroundImage: `url(${propertyImage.url})`,
         }}
       >
         {categoryIndicator[category] ?? null}
       </div>
       <h3>{name}</h3>
-      <h4 className={"price mb-2"}>$ {price}</h4>
+      <h4 className={"price mb-2"}>$ {price.toLocaleString()}</h4>
       <div className="d-flex align-items-center gap-3">
         <img src={ownerImage} alt="" />
         <div className="d-flex flex-column gap-1">
