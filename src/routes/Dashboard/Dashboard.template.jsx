@@ -2,7 +2,7 @@ import { FC } from "react";
 import { Link } from "react-router-dom";
 import "./Dashboard.styles.css";
 import { Dialog } from "primereact/dialog";
-import PropertyForm from "../../components/PropertyForm/PropertyForm";
+import PropertyForm from "../../components/PropertyForm/PropertyForm.component";
 import { deletePropertyImage } from "../../utils/firebase/storage";
 
 export type Property = {

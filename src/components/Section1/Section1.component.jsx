@@ -3,6 +3,11 @@ import "./Section1.styles.css";
 const Section1 = () => {
   return (
     <section className="section-1 container-fluid mb-5 mainContainer ">
+      <img
+        className={"bg-blur top-left"}
+        alt={""}
+        src={"/assets/bg/top_blur.png"}
+      />
       <div className="row">
         <div className="intro col-md-11 col-lg-5 offset-md-1 vh-lg-100">
           <div className="content-container d-flex justify-content-start align-items-center w-100 h-100">

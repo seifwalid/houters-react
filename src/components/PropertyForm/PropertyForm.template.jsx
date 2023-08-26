@@ -8,7 +8,6 @@ const PropertyFormTemplate = ({
   property,
   onChange,
   dropdownOnchange,
-  propertyImageOnChange,
   propertyImageRef,
 }) => {
   const propertyTypes = ["house", "villa", "apartment", "other"];
@@ -62,7 +61,6 @@ const PropertyFormTemplate = ({
           type={"file"}
           className={"form-control"}
           accept={"image/png, image/jpeg, .webp"}
-          onChange={propertyImageOnChange}
           ref={propertyImageRef}
         />
       </div>

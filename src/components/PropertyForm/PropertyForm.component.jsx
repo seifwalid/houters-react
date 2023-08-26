@@ -125,17 +125,12 @@ const PropertyForm: FC = ({
     };
   };
 
-  const propertyImageOnChange = (e) => {
-    console.log(propertyImageRef.current.files[0].name.split("."));
-  };
-
   return (
     <PropertyFormTemplate
       onChange={onChange}
       property={property}
       onSubmit={onSubmit}
       dropdownOnchange={dropdownOnChange}
-      propertyImageOnChange={propertyImageOnChange}
       propertyImageRef={propertyImageRef}
     />
   );

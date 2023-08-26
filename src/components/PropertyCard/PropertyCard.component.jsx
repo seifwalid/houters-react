@@ -16,6 +16,7 @@ const categoryIndicator = {
   newHouse: (
     <div className="category-indicator new-house">
       <img src="/assets/images/house-fill.png" alt="" />
+      New House
     </div>
   ),
 };
@@ -25,7 +26,6 @@ function PropertyCard({
   price,
   propertyImage,
   ownerName,
-  ownerImage,
   category,
   location,
 }) {
@@ -42,7 +42,7 @@ function PropertyCard({
       <h3>{name}</h3>
       <h4 className={"price mb-2"}>$ {price.toLocaleString()}</h4>
       <div className="d-flex align-items-center gap-3">
-        <img src={ownerImage} alt="" />
+        <img src={"/assets/images/avatar1.png"} alt="" />
         <div className="d-flex flex-column gap-1">
           <h4 className={"owner-name"}>{ownerName}</h4>
           <h5 className={"location"}>{location}</h5>
