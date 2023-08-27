@@ -9,6 +9,7 @@ const PropertyFormTemplate = ({
   onChange,
   dropdownOnchange,
   propertyImageRef,
+  disabled,
 }) => {
   const propertyTypes = ["house", "villa", "apartment", "other"];
   const propertyCategories = [
@@ -22,11 +23,16 @@ const PropertyFormTemplate = ({
     <form onSubmit={onSubmit}>
       <div className={"mb-1 d-flex justify-content-between "}>
         <label className={"me-3"}>name</label>
-        <InputText value={property.name} onChange={onChange("name")} />
+        <InputText
+          disabled={disabled}
+          value={property.name}
+          onChange={onChange("name")}
+        />
       </div>
       <div className={"mb-1 d-flex justify-content-between "}>
         <label className={"me-3"}>type</label>
         <Dropdown
+          disabled={disabled}
           value={property.type}
           onChange={dropdownOnchange("type")}
           options={propertyTypes}
@@ -36,6 +42,7 @@ const PropertyFormTemplate = ({
       <div className={"mb-1 d-flex justify-content-between "}>
         <label className={"me-3"}>category</label>
         <Dropdown
+          disabled={disabled}
           value={property.category}
           onChange={dropdownOnchange("category")}
           options={propertyCategories}
@@ -47,6 +54,7 @@ const PropertyFormTemplate = ({
       <div className={"mb-1 d-flex justify-content-between "}>
         <label className={"me-3"}>ownerName</label>
         <InputText
+          disabled={disabled}
           value={property.ownerName}
           onChange={onChange("ownerName")}
         />
@@ -58,6 +66,7 @@ const PropertyFormTemplate = ({
       <div className={"mb-1 d-flex justify-content-between "}>
         <label className={"me-3"}>propertyImage</label>
         <input
+          disabled={disabled}
           type={"file"}
           className={"form-control"}
           accept={"image/png, image/jpeg, .webp"}
@@ -66,11 +75,16 @@ const PropertyFormTemplate = ({
       </div>
       <div className={"mb-1 d-flex justify-content-between "}>
         <label className={"me-3"}>location</label>
-        <InputText value={property.location} onChange={onChange("location")} />
+        <InputText
+          disabled={disabled}
+          value={property.location}
+          onChange={onChange("location")}
+        />
       </div>
       <div className={"mb-1 d-flex justify-content-between "}>
         <label className={"me-3"}>price</label>
         <InputNumber
+          disabled={disabled}
           value={property.price}
           onChange={dropdownOnchange("price")}
           minFractionDigits={0}
@@ -78,7 +92,11 @@ const PropertyFormTemplate = ({
         />
       </div>
       <div className="d-flex justify-content-end">
-        <button className={"btn btn-primary"} type={"submit"}>
+        <button
+          disabled={disabled}
+          className={"btn btn-primary"}
+          type={"submit"}
+        >
           Submit
         </button>
       </div>

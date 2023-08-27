@@ -31,7 +31,7 @@ function PropertyCard({
 }) {
   return (
     <div className="property-card">
-      <div className="property-card-image-container">
+      <div className="property-card-image-container mb-3">
         <img
           className={"property-card-image"}
           src={propertyImage.url}

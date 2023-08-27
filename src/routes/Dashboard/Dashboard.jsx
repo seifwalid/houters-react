@@ -1,55 +1,60 @@
-import { FC, useEffect, useState } from "react";
+import {FC, useEffect, useState} from "react";
 import DashboardTemplate from "./Dashboard.template";
-import { delProperty, getProperties } from "../../api/properties";
+import {delProperty, getProperties} from "../../api/properties";
 
 const Dashboard: FC = () => {
-  const [propertyList, setPropertyList] = useState([]);
-  const [createDialogVisible, setCreateDialogVisible] = useState(false);
-  const [editDialogVisible, setEditDialogVisible] = useState(false);
-  const [editingProperty, setEditingProperty] = useState(undefined);
-  const [updateSignal, setUpdateSignal] = useState(false);
+	const [propertyList, setPropertyList] = useState([]);
 
-  useEffect(() => {
-    getProperties().then(({ data }) => {
-      setPropertyList([...data]);
-    });
-  }, [updateSignal]);
+	const [createDialogVisible, setCreateDialogVisible] = useState(false);
+	const [editDialogVisible, setEditDialogVisible] = useState(false);
+	const [editingProperty, setEditingProperty] = useState(undefined);
+	const [updateSignal, setUpdateSignal] = useState(false);
 
-  const refreshPropertyList = () => {
-    setUpdateSignal(!updateSignal);
-  };
+	const [formLoading, setFormLoading] = useState(false);
 
-  const toggleCreateDialog = () => {
-    setCreateDialogVisible(!createDialogVisible);
-    console.log("create dialog is now....", !createDialogVisible);
-  };
+	useEffect(() => {
+		getProperties().then(({data}) => {
+			setPropertyList([...data]);
+		});
+	}, [updateSignal]);
 
-  const toggleEditDialog = (property) => {
-    setEditingProperty(property);
-    setEditDialogVisible(!editDialogVisible);
-    console.log("edit dialog is now....", !editDialogVisible);
-  };
+	const refreshPropertyList = () => {
+		setUpdateSignal(!updateSignal);
+	};
 
-  const deleteProperty = (id) => {
-    delProperty(id).then((response) => {
-      if (response.status < 400) {
-        refreshPropertyList();
-      }
-    });
-  };
+	const toggleCreateDialog = () => {
+		setCreateDialogVisible(!createDialogVisible);
+		console.log("create dialog is now....", !createDialogVisible);
+	};
 
-  return (
-    <DashboardTemplate
-      propertyList={propertyList}
-      createDialogVisible={createDialogVisible}
-      toggleCreateDialog={toggleCreateDialog}
-      editDialogVisible={editDialogVisible}
-      toggleEditDialog={toggleEditDialog}
-      editingProperty={editingProperty}
-      refreshPropertyList={refreshPropertyList}
-      deleteProperty={deleteProperty}
-    />
-  );
+	const toggleEditDialog = (property) => {
+		setEditingProperty(property);
+		setEditDialogVisible(!editDialogVisible);
+		console.log("edit dialog is now....", !editDialogVisible);
+	};
+
+	const deleteProperty = (id) => {
+		delProperty(id).then((response) => {
+			if (response.status < 400) {
+				refreshPropertyList();
+			}
+		});
+	};
+
+	return (
+		<DashboardTemplate
+			propertyList={propertyList}
+			createDialogVisible={createDialogVisible}
+			toggleCreateDialog={toggleCreateDialog}
+			editDialogVisible={editDialogVisible}
+			toggleEditDialog={toggleEditDialog}
+			editingProperty={editingProperty}
+			refreshPropertyList={refreshPropertyList}
+			deleteProperty={deleteProperty}
+			formLoading={formLoading}
+			setFormLoading={setFormLoading}
+		/>
+	);
 };
 
 export default Dashboard;

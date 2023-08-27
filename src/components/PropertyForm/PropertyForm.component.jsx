@@ -10,6 +10,8 @@ const PropertyForm: FC = ({
   initialProperty,
   closeDialog,
   refreshPropertyList,
+  setLoading,
+  loading,
 }) => {
   const [property, setProperty] = useState({
     name: "",
@@ -29,11 +31,16 @@ const PropertyForm: FC = ({
   }, [initialProperty]);
 
   const defaultThen = (response) => {
-    console.log(response);
+    setLoading(false);
     if (response.status < 400) {
       refreshPropertyList();
       closeDialog();
     }
+  };
+
+  const defaultCatch = (err) => {
+    console.error(err);
+    setLoading(false);
   };
 
   const createPropertyImageRef = (file) => {
@@ -56,7 +63,7 @@ const PropertyForm: FC = ({
   };
 
   const uploadPropertyImageWithRequest = (requestBody, requestFn: Function) => {
-    uploadPropertyImage().then((imageRef) => {
+    return uploadPropertyImage().then((imageRef) => {
       getDownloadURL(imageRef).then((url) => {
         requestBody.propertyImage = {
           fullPath: imageRef.fullPath,
@@ -68,7 +75,7 @@ const PropertyForm: FC = ({
   };
 
   const createPropertyWithImage = (requestBody) => {
-    uploadPropertyImageWithRequest(requestBody, () =>
+    return uploadPropertyImageWithRequest(requestBody, () =>
       createProperty(requestBody).then(defaultThen)
     );
   };
@@ -91,10 +98,11 @@ const PropertyForm: FC = ({
   const onSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
     console.log("initial property: ", initialProperty);
+    setLoading(true);
     if (initialProperty === undefined) {
       const requestBody = { ...property };
       if (propertyImageRef.current.files.length > 0) {
-        createPropertyWithImage(requestBody);
+        createPropertyWithImage(requestBody).catch(defaultCatch);
       } else {
         createProperty(requestBody).then(defaultThen);
       }
@@ -102,7 +110,7 @@ const PropertyForm: FC = ({
       const { id, ...requestBody } = property;
 
       if (propertyImageRef.current.files.length > 0) {
-        updatePropertyWithImage(id, requestBody);
+        updatePropertyWithImage(id, requestBody).catch(defaultCatch);
       } else {
         updateProperty(id, requestBody).then(defaultThen);
       }
@@ -132,6 +140,7 @@ const PropertyForm: FC = ({
       onSubmit={onSubmit}
       dropdownOnchange={dropdownOnChange}
       propertyImageRef={propertyImageRef}
+      disabled={loading}
     />
   );
 };

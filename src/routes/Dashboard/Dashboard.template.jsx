@@ -26,6 +26,8 @@ const DashboardTemplate: FC = ({
   toggleEditDialog,
   refreshPropertyList,
   deleteProperty,
+  formLoading,
+  setFormLoading,
 }) => {
   return (
     <>
@@ -53,6 +55,8 @@ const DashboardTemplate: FC = ({
           <PropertyForm
             refreshPropertyList={refreshPropertyList}
             closeDialog={toggleCreateDialog}
+            loading={formLoading}
+            setLoading={setFormLoading}
           />
         </Dialog>
 
@@ -120,7 +124,7 @@ const DashboardTemplate: FC = ({
           </tbody>
         </table>
         <Dialog
-          header={"Add Property"}
+          header={"Edit Property"}
           visible={editDialogVisible}
           onHide={toggleEditDialog}
         >
@@ -128,6 +132,8 @@ const DashboardTemplate: FC = ({
             initialProperty={editingProperty}
             refreshPropertyList={refreshPropertyList}
             closeDialog={toggleEditDialog}
+            loading={formLoading}
+            setLoading={setFormLoading}
           />
         </Dialog>
       </div>
