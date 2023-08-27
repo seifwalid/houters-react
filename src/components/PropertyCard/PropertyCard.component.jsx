@@ -31,12 +31,12 @@ function PropertyCard({
 }) {
   return (
     <div className="property-card">
-      <div
-        className={"property-card-image"}
-        style={{
-          backgroundImage: `url(${propertyImage.url})`,
-        }}
-      >
+      <div className="property-card-image-container">
+        <img
+          className={"property-card-image"}
+          src={propertyImage.url}
+          alt={""}
+        />
         {categoryIndicator[category] ?? null}
       </div>
       <h3>{name}</h3>
