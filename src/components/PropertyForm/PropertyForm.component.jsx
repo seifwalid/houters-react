@@ -20,9 +20,38 @@ const PropertyForm: FC = ({
     price: 0,
     location: "",
     ownerName: "",
-    propertyImage: null,
+    propertyImage: {
+      url: "",
+      fullpath: "",
+    },
   });
   const propertyImageRef = useRef(null);
+  const [propertyImageData, setPropertyImageData] = useState("");
+  const [propertyImageValue, setPropertyImageValue] = useState("");
+  const [previewDialog, setPreviewDialog] = useState(false);
+  const [willClearImage, setWillClearImage] = useState(false);
+
+  const clearPropertyImageInput = () => {
+    setPropertyImageData("");
+    setPropertyImageValue("");
+    const newProperty = { ...property };
+    newProperty.propertyImage = {
+      url: "",
+      fullpath: "",
+    };
+    setProperty({ ...newProperty });
+    console.log(newProperty);
+    if (property.propertyImage.fullpath) {
+      setWillClearImage(true);
+    }
+  };
+
+  const propertyImageOnChange = async (e: SyntheticEvent<InputEvent>) => {
+    const inputElement: HTMLInputElement = e.target;
+    const file = inputElement.files[0];
+    setPropertyImageData(URL.createObjectURL(file));
+    setPropertyImageValue(inputElement.value);
+  };
 
   useEffect(() => {
     if (initialProperty !== undefined) {
@@ -108,7 +137,11 @@ const PropertyForm: FC = ({
       }
     } else {
       const { id, ...requestBody } = property;
-
+      if (willClearImage) {
+        deletePropertyImage(property.propertyImage.fullpath).then(() => {
+          console.log("successfully deleted image");
+        });
+      }
       if (propertyImageRef.current.files.length > 0) {
         updatePropertyWithImage(id, requestBody).catch(defaultCatch);
       } else {
@@ -133,6 +166,10 @@ const PropertyForm: FC = ({
     };
   };
 
+  const togglePreviewDialog = () => {
+    setPreviewDialog((p) => !p);
+  };
+
   return (
     <PropertyFormTemplate
       onChange={onChange}
@@ -140,7 +177,14 @@ const PropertyForm: FC = ({
       onSubmit={onSubmit}
       dropdownOnchange={dropdownOnChange}
       propertyImageRef={propertyImageRef}
+      propertyImageData={propertyImageData}
+      propertyImageOnChange={propertyImageOnChange}
       disabled={loading}
+      previewDialog={previewDialog}
+      togglePreviewDialog={togglePreviewDialog}
+      willClearPropertyImage={willClearImage}
+      clearPropertyImageInput={clearPropertyImageInput}
+      propertyImageValue={propertyImageValue}
     />
   );
 };

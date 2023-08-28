@@ -2,6 +2,7 @@ import "./PropertyForm.css";
 import { InputText } from "primereact/inputtext";
 import { InputNumber } from "primereact/inputnumber";
 import { Dropdown } from "primereact/dropdown";
+import { Dialog } from "primereact/dialog";
 
 const PropertyFormTemplate = ({
   onSubmit,
@@ -10,6 +11,12 @@ const PropertyFormTemplate = ({
   dropdownOnchange,
   propertyImageRef,
   disabled,
+  propertyImageData,
+  propertyImageOnChange,
+  previewDialog,
+  togglePreviewDialog,
+  willClearPropertyImage,
+  clearPropertyImageInput,
 }) => {
   const propertyTypes = ["house", "villa", "apartment", "other"];
   const propertyCategories = [
@@ -18,6 +25,10 @@ const PropertyFormTemplate = ({
     { label: "best deals", value: "bestDeals" },
     { label: "other", value: "other" },
   ];
+
+  // useEffect(() => {
+  //   console.log("property is now: ", property);
+  // }, [property]);
 
   return (
     <form onSubmit={onSubmit}>
@@ -65,13 +76,52 @@ const PropertyFormTemplate = ({
       </div>
       <div className={"mb-1 d-flex justify-content-between "}>
         <label className={"me-3"}>propertyImage</label>
+        <button
+          className={`btn ${
+            willClearPropertyImage ||
+            (!propertyImageData &&
+              !(property.propertyImage && property.propertyImage.url))
+              ? "d-none"
+              : ""
+          }`}
+          type={"button"}
+          onClick={clearPropertyImageInput}
+        >
+          <i className="pi pi-times-circle"></i>
+        </button>
         <input
           disabled={disabled}
           type={"file"}
-          className={"form-control"}
+          className={"form-control me-1"}
           accept={"image/png, image/jpeg, .webp"}
           ref={propertyImageRef}
+          onChange={propertyImageOnChange}
         />
+        <button
+          type={"button"}
+          disabled={
+            !propertyImageData &&
+            !(property.propertyImage && property.propertyImage.url)
+          }
+          className="btn btn-outline-dark"
+          onClick={togglePreviewDialog}
+        >
+          preview
+        </button>
+        <Dialog visible={previewDialog} onHide={togglePreviewDialog}>
+          <div className={"property-card ms-0"}>
+            <div className={"property-card-image-container"}>
+              <img
+                className={"property-card-image"}
+                src={
+                  propertyImageData ||
+                  (property.propertyImage && property.propertyImage.url)
+                }
+                alt=""
+              />
+            </div>
+          </div>
+        </Dialog>
       </div>
       <div className={"mb-1 d-flex justify-content-between "}>
         <label className={"me-3"}>location</label>

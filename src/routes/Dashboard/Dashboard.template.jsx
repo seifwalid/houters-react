@@ -21,7 +21,6 @@ const DashboardTemplate: FC = ({
   propertyList,
   createDialogVisible,
   toggleCreateDialog,
-  editDialogVisible,
   editingProperty,
   toggleEditDialog,
   refreshPropertyList,
@@ -93,13 +92,14 @@ const DashboardTemplate: FC = ({
                           className={""}
                           onClick={() => {
                             deleteProperty(property.id);
-                            deletePropertyImage(
-                              property.propertyImage.fullPath
-                            ).then(() => {
-                              console.log(
-                                `deleted ${property.propertyImage.fullPath}`
-                              );
-                            });
+                            if (property.propertyImage.url)
+                              deletePropertyImage(
+                                property.propertyImage.fullPath
+                              ).then(() => {
+                                console.log(
+                                  `deleted ${property.propertyImage.fullPath}`
+                                );
+                              });
                           }}
                         >
                           del
@@ -125,11 +125,11 @@ const DashboardTemplate: FC = ({
         </table>
         <Dialog
           header={"Edit Property"}
-          visible={editDialogVisible}
+          visible={editingProperty !== undefined}
           onHide={toggleEditDialog}
         >
           <PropertyForm
-            initialProperty={editingProperty}
+            initialProperty={{ ...editingProperty }}
             refreshPropertyList={refreshPropertyList}
             closeDialog={toggleEditDialog}
             loading={formLoading}
