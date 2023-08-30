@@ -126,9 +126,10 @@ const PropertyForm: FC = ({
 
   const onSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
-    console.log("initial property: ", initialProperty);
+
     setLoading(true);
     if (initialProperty === undefined) {
+      //if user is editing
       const requestBody = { ...property };
       if (propertyImageRef.current.files.length > 0) {
         createPropertyWithImage(requestBody).catch(defaultCatch);
